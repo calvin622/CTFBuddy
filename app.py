@@ -67,7 +67,7 @@ def play():
                     return redirect(url_for("play"))
         
                 else:
-                    session["message"] = "incorrect flag"
+                    session["message"] = "incorrect flag!"
                     return redirect(url_for("play"))
             elif request.form["btn_identifier"] == "hint_id_identifier":
                     session["message"] = session["hint"]
