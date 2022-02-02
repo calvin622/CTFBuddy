@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}View Page{% endblock %}
+
+{% block content %}
+    {% for item in values %}
+        <p>name: {{item.flag}}, email: {{item.help}}</p>
+    {% endfor %}
+{% endblock %}
