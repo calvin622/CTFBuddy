@@ -1,0 +1,131 @@
+{% extends "newbase.html" %}
+{% block title %}Game Select{% endblock %}
+{% block content %}
+<main class="page lanidng-page" style="background: #393E46;min-height: 100vh;">
+    <section class="portfolio-block block-intro" style="height: 340px;padding-top: 60px;">
+        <div class="container">
+            <div class="avatar" style="border-radius: 50px;background: url(&quot;static/img/robot02_90810.png&quot;) center / contain;border-style: none;border-color: rgb(0,188,212);box-shadow: 0px 0px 10px 3px rgb(0,188,212);"></div>
+            <div class="about-me">
+                <p style="color: #EEEEEE;">Choose your challenge.</p>
+            </div>
+        </div>
+    </section>
+    <div class="card shadow" style="background: #393E46;">
+        <div class="card-header py-3"></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 text-nowrap">
+                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label" style="color: var(--bs-white);">Show&nbsp;<select class="d-inline-block form-select form-select-sm" style="background: #222831;border-color: rgb(0,188,212);color: rgb(255,255,255);">
+                                <option value="10" selected="">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>&nbsp;</label></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search" style="background: #222831;color: rgb(255,255,255);border-color: rgb(0,188,212);"></label></div>
+                </div>
+            </div>
+            <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info" style="border-bottom-color: var(--bs-table-active-color);">
+                <table class="table my-0" id="dataTable">
+                    <thead>
+                        <tr style="color: var(--bs-white);">
+                            <th>Creator</th>
+                            <th>CTF</th>
+                            <th>Category</th>
+                            <th>Difficulty&nbsp;</th>
+                            <th>Status</th>
+                            <th>Download</th>
+                            <th>Play</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color: var(--bs-white);border-style: solid;border-color: #222831;">
+                        <tr style="border-top-width: 3px;">
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/avatar1.jpeg">Airi Satou</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td style="width: 195.781px;"><button class="btn" type="submit" style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></td>
+                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play') }}"><button class="btn" type="submit" style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button></td>
+                        </tr>
+                        <tr style="border-top-width: 3px;">
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/avatar1.jpeg">Airi Satou</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>Cell 6</td>
+                            <td></td>
+                        </tr>
+                        <tr style="border-top-width: 3px;">
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/avatar1.jpeg">Airi Satou</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>Cell 6</td>
+                            <td></td>
+                        </tr>
+                        <tr style="border-top-width: 3px;">
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/avatar1.jpeg">Airi Satou</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>Cell 6</td>
+                            <td></td>
+                        </tr>
+                        <tr style="border-top-width: 3px;">
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/avatar1.jpeg">Airi Satou</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>Cell 6</td>
+                            <td></td>
+                        </tr>
+                        <tr style="border-top-width: 3px;">
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/avatar1.jpeg">Airi Satou</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>Cell 6</td>
+                            <td></td>
+                        </tr>
+                        <tr style="border-top-width: 3px;">
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/avatar1.jpeg">Airi Satou</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>Cell 6</td>
+                            <td></td>
+                        </tr>
+                        <tr style="border-top-width: 3px;">
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/avatar1.jpeg">Airi Satou</td>
+                            <td>Accountant</td>
+                            <td>Tokyo</td>
+                            <td>33</td>
+                            <td>2008/11/28</td>
+                            <td>Cell 6</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr style="background: var(--bs-table-active-color);border-style: none;border-color: var(--bs-table-active-color);">
+                            
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite" style="color: rgb(0,188,212);">Showing 1 to 10 of 27</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
