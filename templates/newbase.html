@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700">
     <link rel="stylesheet" href="{{ url_for('static', filename='fonts/ionicons.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css">
+    {% block head %}
+
+    {% endblock %}
 </head>
 
 <body style="background: #222831;">
@@ -16,9 +19,15 @@
         <div class="container"><a class="navbar-brand logo" href="index" style="color: #ffffff;">CTFBuddy</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="play-menu">Play</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects-grid-cards">Downloads</a></li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.gameselect') }}">Play</a></li>
                     <li class="nav-item"><a class="nav-link" href="hire-me">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.profile') }}">Account</a></li>
+                    {% endif %}
+                    {% if not current_user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.signup') }}">Register</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

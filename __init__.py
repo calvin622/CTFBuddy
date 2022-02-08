@@ -32,4 +32,8 @@ def create_app():
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    # blueprint for game
+    from .ctf import ctf as ctf_blueprint
+    app.register_blueprint(ctf_blueprint)
+
     return app

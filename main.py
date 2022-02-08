@@ -13,10 +13,10 @@ def index():
     return render_template("index.html")
 
     
-@main.route("/play-menu")
-@main.route("/play-menu.html")
-def base():
-    return render_template("play-menu.html")
+@main.route("/gameselect")
+@login_required
+def gameselect():
+    return render_template("gameselect.html")
 
 @main.route('/profile')
 @login_required

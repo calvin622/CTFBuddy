@@ -1,36 +1,30 @@
 {% extends "newbase.html" %}
-
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/Login-Form-Dark.css')}}">
+{% endblock %}
 {% block content %}
 <main class="page lanidng-page" style="background: #393E46;min-height: 100vh;">
-    <h3 class="title">Login</h3>
-    <div class="box">
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        <div class="notification is-danger">
-            {{ messages[0] }}
-        </div>
-        {% endif %}
-        {% endwith %}
-        <form method="POST" action="/login">
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Your Email" autofocus="">
-                </div>
+    <section class="login-dark">
+        <form method="post" action="/login">
+            <h2 class="visually-hidden">Login Form</h2>
+            <h2 class="text-center">Login</h2>
+            {% with messages = get_flashed_messages() %}
+            <div color="blue" class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+            {% if messages %}
+            <div style="color: rgb(255,0,0);" class="text-center notification is-danger">
+                <p>{{ messages[0] }}</p>
             </div>
-
-            <div class="field">
-                <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Your Password">
-                </div>
-            </div>
-            <div class="field">
-                <label class="checkbox">
-                    <input type="checkbox" name="remember">
-                    Remember me
-                </label>
-            </div>
-            <button class="button is-block is-info is-large is-fullwidth">Login</button>
+            {% endif %}
+            {% endwith %}
+            <div class="mb-3"><input class="form-control" type="email" name="email" placeholder="Email"></div>
+            <div class="mb-3"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="mb-3"><button class="btn btn-primary d-block w-100" type="submit">Log In</button></div><a
+                class="forgot" href="{{ url_for('auth.signup') }}">Don't have an account? Register here</a><a class="forgot"
+                href="#">Forgot your email or password?</a>
         </form>
-    </div>
+    </section>
 </main>
+
+
+
 {% endblock %}
