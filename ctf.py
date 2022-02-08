@@ -6,7 +6,10 @@ from . import db
 
 ctf = Blueprint('ctf', __name__)
 
+
+
 @ctf.route("/play", methods=["POST", "GET"])
+@login_required
 def play():
     self_redirect = "ctf.play"
     session.permanent = True
