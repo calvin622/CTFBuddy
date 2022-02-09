@@ -1,5 +1,4 @@
 from .models import User
-from .models import flags
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session
 from flask_login import login_required, current_user
 from . import db
