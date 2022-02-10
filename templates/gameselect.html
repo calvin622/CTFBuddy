@@ -52,14 +52,19 @@
                     <tbody style="color: var(--bs-white);border-style: solid;border-color: #222831;">
                         {% for info in games %}
                         <tr style="border-top-width: 3px;">
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="avatars/avatar1.jpeg">Airi
-                                Satou</td>
-                            <td>{{item.flag}}</td>
-                            <td>Tokyo</td>
-                            <td>33</td>
-                            <td>2008/11/28</td>
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.name}}</td>
+                            <td>{{info.name}}</td>
+                            <td>{{info.category}}</td>
+                            <td>{{info.difficulty}}</td>
+                            {% for status in test %}
+                            {% if status.games_id == info.id %}
+                            <td>{{status.status}}</td>
+                            {% else %}
+                            <td>Not Started</td>
+                            {% endif %}
+                            {% endfor %}
                             <td style="width: 195.781px;"><a
-                                    href="{{ url_for('main.download', ctf_name='passwords/ctf1.txt') }}"><button
+                                    href="{{ url_for('main.download', path=info.url) }}"><button
                                         class="btn" type="submit"
                                         style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
                             </td>

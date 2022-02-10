@@ -21,9 +21,8 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-    from .models import User
-    from .models import Games
-    from .models import Flags
+    from .models import User, Games, Flags, UserGameStatus
+    
     
     @login_manager.user_loader
     def load_user(user_id):
