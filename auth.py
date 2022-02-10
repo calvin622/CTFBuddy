@@ -27,7 +27,7 @@ def login_post():
 
     # if the above check passes, then we know the user has the right credentials
     login_user(user, remember=remember)
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.index'))
 
 @auth.route('/logout')
 @login_required
@@ -57,7 +57,7 @@ def signup_post():
         flash('Passwords do not match!')
         return redirect(url_for('auth.signup'))
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
+    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'), image="static/img/profile/kisspng-united-states-avatar.png")
 
     # add the new user to the database
     db.session.add(new_user)
