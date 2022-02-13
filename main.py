@@ -19,11 +19,18 @@ def index():
 @main.route("/gameselect")
 @login_required
 def gameselect():
-    games = Games.query.all()
+    
+    started_games = UserGameStatus.query.with_entities(UserGameStatus.games_id).filter_by(user_id=current_user.id, status="Started")
+    completed_games = UserGameStatus.query.with_entities(UserGameStatus.games_id).filter_by(user_id=current_user.id, status="Completed")
+    
+    show_started_games = Games.query.filter(Games.id.in_(started_games)).all()
+    show_completed_games = Games.query.filter(Games.id.in_(completed_games)).all()
+    not_started_games = Games.query.filter(Games.id.notin_(started_games or completed_games)).all()
 
-    test = UserGameStatus.query.filter_by(user_id=current_user.id)
+    
 
-    return render_template("gameselect.html", games=games, test=test)
+    return render_template("gameselect.html", started_games=show_started_games, completed_games=show_completed_games, not_started_games=not_started_games)
+    
 
 
 @main.route("/gameselect/<path:path>", methods=['GET', 'POST'])

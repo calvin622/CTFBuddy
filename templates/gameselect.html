@@ -1,5 +1,9 @@
 {% extends "newbase.html" %}
 {% block title %}Game Select{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/filter.css')}}">
+<script src="{{ url_for('static', filename='bootstrap/js/filter.js')}}"></script>
+{% endblock %}
 {% block content %}
 <main class="page lanidng-page" style="background: #393E46;min-height: 100vh;">
     <section class="portfolio-block block-intro" style="height: 340px;padding-top: 60px;">
@@ -26,6 +30,15 @@
                                 <option value="50">50</option>
                                 <option value="100">100</option>
                             </select>&nbsp;</label></div>
+                            <div id="myBtnContainer">
+                                <button  class="btn active" onclick="filterSelection('all')"> Show all</button>
+                                <button class="btn" onclick="filterSelection('not_started_games')"> Not Started</button>
+                                <button class="btn" onclick="filterSelection('col-started')"> Started</button>
+                                <button class="btn" onclick="filterSelection('completed_games')"> Completed</button>
+                                
+                              </div>
+
+                              
                 </div>
                 <div class="col-md-6">
                     <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input
@@ -35,6 +48,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info"
                 style="border-bottom-color: var(--bs-table-active-color);">
                 <table class="table my-0" id="dataTable">
@@ -49,34 +63,96 @@
                             <th>Play</th>
                         </tr>
                     </thead>
-                    <tbody style="color: var(--bs-white);border-style: solid;border-color: #222831;">
-                        {% for info in games %}
+                    
+                    <tbody  class="filterDiv not_started_games" style="color: var(--bs-white);border-style: solid;border-color: #222831;">
+                        
+                        {% for info in not_started_games %}
                         <tr style="border-top-width: 3px;">
+                            
                             <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.name}}</td>
-                            <td>{{info.name}}</td>
+                            <td>{{info.id}}</td>
                             <td>{{info.category}}</td>
                             <td>{{info.difficulty}}</td>
-                            {% for status in test %}
-                            {% if status.games_id == info.id %}
-                            <td>{{status.status}}</td>
-                            {% else %}
+                            
+    
                             <td>Not Started</td>
-                            {% endif %}
-                            {% endfor %}
                             <td style="width: 195.781px;"><a
                                     href="{{ url_for('main.download', path=info.url) }}"><button
                                         class="btn" type="submit"
                                         style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
                             </td>
-                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play') }}"><button class="btn"
+                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', game_id=info.id) }}"><button class="btn"
                                         type="submit"
                                         style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
                             </td>
+                        
                         </tr>
                         {% endfor %}
-                        
-                        
+                    
+                    
                     </tbody>
+
+                    <tbody  class="filterDiv col-started" style="color: var(--bs-white);border-style: solid;border-color: #222831;">
+                        
+                        {% for info in started_games %}
+                        <tr style="border-top-width: 3px;">
+                            
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.name}}</td>
+                            <td>{{info.id}}</td>
+                            <td>{{info.category}}</td>
+                            <td>{{info.difficulty}}</td>
+                            
+    
+                            <td>Started</td>
+                            <td style="width: 195.781px;"><a
+                                    href="{{ url_for('main.download', path=info.url) }}"><button
+                                        class="btn" type="submit"
+                                        style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
+                            </td>
+                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', game_id=info.id) }}"><button class="btn"
+                                        type="submit"
+                                        style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
+                            </td>
+                        
+                        </tr>
+                        {% endfor %}
+                    
+                    
+                    </tbody>
+
+                    <tbody  class="filterDiv completed_games" style="color: var(--bs-white);border-style: solid;border-color: #222831;">
+                        
+                        
+                        
+                        {% for info in completed_games %}
+                        <tr style="border-top-width: 3px;">
+                            
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.name}}</td>
+                            <td>{{info.id}}</td>
+                            <td>{{info.category}}</td>
+                            <td>{{info.difficulty}}</td>
+                            
+    
+                            <td>Started</td>
+                            <td style="width: 195.781px;"><a
+                                    href="{{ url_for('main.download', path=info.url) }}"><button
+                                        class="btn" type="submit"
+                                        style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
+                            </td>
+                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', game_id=info.id) }}"><button class="btn"
+                                        type="submit"
+                                        style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
+                            </td>
+                        
+                        </tr>
+                        {% endfor %}
+                    
+                    
+                    </tbody>
+                    
+                </div>
+
+                
                     <tfoot>
                         <tr
                             style="background: var(--bs-table-active-color);border-style: none;border-color: var(--bs-table-active-color);">
@@ -84,7 +160,9 @@
                         </tr>
                     </tfoot>
                 </table>
+
             </div>
+        
             <div class="row">
                 <div class="col-md-6 align-self-center">
                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"
@@ -94,4 +172,7 @@
         </div>
     </div>
 </main>
+
+<script>filterSelection("all")</script>
+
 {% endblock %}
