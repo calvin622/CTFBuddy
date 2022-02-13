@@ -1,4 +1,4 @@
-from .models import User
+from .models import User, Flags, Games, UserGameStatus
 from flask import Blueprint, render_template, redirect, url_for, request, flash, session
 from flask_login import login_required, current_user
 from . import db
@@ -7,9 +7,19 @@ ctf = Blueprint('ctf', __name__)
 
 
 
-@ctf.route("/play", methods=["POST", "GET"])
+@ctf.route("/<int:game_id>", methods=["POST", "GET"])
 @login_required
-def play():
+def play(game_id):
+
+    games_saves = UserGameStatus.query.filter_by(user_id=current_user.id, games_id=game_id).first()
+    if not games_saves:
+
+        new_save = UserGameStatus(status = "Started", user_id=current_user.id, games_id=game_id)
+        db.session.add(new_save)
+        db.session.commit()
+
+    
+    
     self_redirect = "ctf.play"
     session.permanent = True
     if "points" and "hint" and "submitted_flags" and "amount_of_flags" in session:
