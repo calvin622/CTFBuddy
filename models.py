@@ -44,4 +44,4 @@ class Flags(db.Model):
     flag = db.Column(db.String(200))
     hint = db.Column(db.String(200))
     points = db.Column(db.Integer)
-    games_id = db.Column(db.Integer, db.ForeignKey('games.id'))
+    games_name = db.Column(db.Integer, db.ForeignKey('games.name'))
