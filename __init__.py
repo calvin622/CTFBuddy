@@ -12,7 +12,12 @@ def create_app():
 
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
-    
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    app.config["FILE_UPLOADS"] = "/mnt/c/Users/Calvin/devapp/CTFBuddy/static/ctfs"
+    app.config["FILE_DOWNLOADS"] = "/mnt/c/Users/Calvin/devapp/CTFBuddy/static/ctfs"
+    app.config["ALLOWED_FILE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
+    app.config['MAX_FILE_FILESIZE'] = 50 * 1024 * 10241
 
     db.init_app(app)
     
@@ -40,5 +45,9 @@ def create_app():
     # blueprint for game
     from .ctf import ctf as ctf_blueprint
     app.register_blueprint(ctf_blueprint)
+
+    # blueprint for game
+    from .create import create as create
+    app.register_blueprint(create)
 
     return app
