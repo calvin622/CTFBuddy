@@ -31,8 +31,8 @@
                                 <option value="100">100</option>
                             </select>&nbsp;</label></div>
                             <div id="myBtnContainer">
-                                <button  class="btn active" onclick="filterSelection('all')"> Show all</button>
-                                <button class="btn" onclick="filterSelection('not_started_games')"> Not Started</button>
+                
+                                <button class="btn active" class="btn" onclick="filterSelection('all_games')"> Show all</button>
                                 <button class="btn" onclick="filterSelection('col-started')"> Started</button>
                                 <button class="btn" onclick="filterSelection('completed_games')"> Completed</button>
                                 
@@ -64,24 +64,24 @@
                         </tr>
                     </thead>
                     
-                    <tbody  class="filterDiv not_started_games" style="color: var(--bs-white);border-style: solid;border-color: #222831;">
+                    <tbody  class="filterDiv all_games" style="color: var(--bs-white);border-style: solid;border-color: #222831;">
                         
-                        {% for info in not_started_games %}
+                        {% for info in all_games %}
                         <tr style="border-top-width: 3px;">
                             
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.name}}</td>
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.user.name}}</td>
                             <td>{{info.name}}</td>
                             <td>{{info.category}}</td>
                             <td>{{info.difficulty}}</td>
-                            
+                            <td>New!</td>
     
-                            <td>Not Started</td>
+            
                             <td style="width: 195.781px;"><a
                                     href="{{ url_for('main.download', path=info.url) }}"><button
                                         class="btn" type="submit"
                                         style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
                             </td>
-                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', game_id=info.id) }}"><button class="btn"
+                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', games_name=info.name) }}"><button class="btn"
                                         type="submit"
                                         style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
                             </td>
@@ -97,10 +97,10 @@
                         {% for info in started_games %}
                         <tr style="border-top-width: 3px;">
                             
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.name}}</td>
-                            <td>{{info.name}}</td>
-                            <td>{{info.category}}</td>
-                            <td>{{info.difficulty}}</td>
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.user.name}}</td>
+                            <td>{{info.games.name}}</td>
+                            <td>{{info.games.category}}</td>
+                            <td>{{info.games.difficulty}}</td>
                             
     
                             <td>Started</td>
@@ -109,7 +109,7 @@
                                         class="btn" type="submit"
                                         style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
                             </td>
-                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', game_id=info.id) }}"><button class="btn"
+                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', games_name=info.games.name) }}"><button class="btn"
                                         type="submit"
                                         style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
                             </td>
@@ -127,19 +127,19 @@
                         {% for info in completed_games %}
                         <tr style="border-top-width: 3px;">
                             
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.name}}</td>
-                            <td>{{info.name}}</td>
-                            <td>{{info.category}}</td>
-                            <td>{{info.difficulty}}</td>
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.user.name}}</td>
+                            <td>{{info.games.name}}</td>
+                            <td>{{info.games.category}}</td>
+                            <td>{{info.games.difficulty}}</td>
                             
     
-                            <td>Started</td>
+                            <td>Completed</td>
                             <td style="width: 195.781px;"><a
                                     href="{{ url_for('main.download', path=info.url) }}"><button
                                         class="btn" type="submit"
                                         style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
                             </td>
-                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', game_id=info.id) }}"><button class="btn"
+                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', games_name=info.games.name) }}"><button class="btn"
                                         type="submit"
                                         style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
                             </td>
@@ -173,6 +173,6 @@
     </div>
 </main>
 
-<script>filterSelection("all")</script>
+<script>filterSelection("all_games")</script>
 
 {% endblock %}
