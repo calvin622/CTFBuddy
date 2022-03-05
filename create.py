@@ -92,7 +92,7 @@ def create_post():
             if not flag_points:
                 flash('Points required.')
                 return redirect(url_for('main.create'))
-            new_flag = Flags(flag=flag, hint=flag_hint,
+            new_flag = Flags(flag_num=flag_num, flag=flag, hint=flag_hint,
                              points=flag_points, games_name=name)
             db.session.add(new_flag)
             flag_num += 1
