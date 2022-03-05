@@ -24,6 +24,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('main.create') }}">Create</a></li>
                     <li class="nav-item"><a class="nav-link" href="hire-me">Resources</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('main.profile') }}">Account</a></li>
+                    <li class="nav-item"><p class="nav-link" style="color: rgb(0,188,212);">Points: {{current_user.points}}</p></li>
                     {% endif %}
                     {% if not current_user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Login</a></li>
