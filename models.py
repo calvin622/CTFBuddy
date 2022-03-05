@@ -26,7 +26,7 @@ class UserGameStatus(db.Model):
     flag9_status = db.Column(db.String(200))
     flag10_status = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    games_id = db.Column(db.Integer, db.ForeignKey('games.id'))
+    games_name = db.Column(db.String(200), db.ForeignKey('games.name'))
 
 class Games(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -41,7 +41,8 @@ class Games(db.Model):
 
 class Flags(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    flag_num = db.Column(db.Integer)
     flag = db.Column(db.String(200))
     hint = db.Column(db.String(200))
     points = db.Column(db.Integer)
-    games_name = db.Column(db.Integer, db.ForeignKey('games.name'))
+    games_name = db.Column(db.String(200), db.ForeignKey('games.name'))
