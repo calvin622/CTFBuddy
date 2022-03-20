@@ -15,9 +15,11 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config["FILE_UPLOADS"] = "/mnt/c/Users/Calvin/devapp/CTFBuddy/static/ctfs"
+    app.config["IMG_UPLOADS"] = "/mnt/c/Users/Calvin/devapp/CTFBuddy/static/img/profile"
     app.config["FILE_DOWNLOADS"] = "/mnt/c/Users/Calvin/devapp/CTFBuddy/static/ctfs"
-    app.config["ALLOWED_FILE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
-    app.config['MAX_FILE_FILESIZE'] = 50 * 1024 * 10241
+    app.config["ALLOWED_FILE_EXTENSIONS"] = ["OVA", "ZIP", "TXT"]
+    app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPG", "PNG", "JPEG"]
+    app.config['MAX_FILE_FILESIZE'] = 3072 * 1024 * 1024
 
     db.init_app(app)
     
