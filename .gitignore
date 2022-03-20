@@ -2,6 +2,8 @@ db.sqlite
 env/
 sql/
 logs/
+ctfs/
+profile/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
