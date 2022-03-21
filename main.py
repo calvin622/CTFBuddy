@@ -18,6 +18,11 @@ main = Blueprint('main', __name__)
 def index():
     return render_template("index.html")
 
+@main.route("/guide")
+def guide():
+    return render_template("guide.html")
+
+
 
 @main.route("/gameselect")
 @login_required
@@ -38,9 +43,56 @@ def download(path):
     except FileNotFoundError:
         abort(404)
 
+def allowed_file(filename):
+
+    if not "." in filename:
+        return False
+
+    ext = filename.rsplit(".", 1)[1]
+
+    if ext.upper() in current_app.config["ALLOWED_IMAGE_EXTENSIONS"]:
+        return True
+    else:
+        return False
 
 
-@main.route('/profile')
+def allowed_file_filesize(filesize):
+
+    if int(filesize) <= current_app.config["MAX_FILE_FILESIZE"]:
+        return True
+    else:
+        return False
+
+
+def upload_file():
+
+    if request.files:
+
+        if "filesize" in request.cookies:
+
+            if not allowed_file_filesize(request.cookies["filesize"]):
+                print("Filesize exceeded maximum limit")
+                return False
+
+            file = request.files["file"]
+
+            if file.filename == "":
+                print("No filename")
+                return False
+
+            if allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                return filename
+
+            else:
+                print("That file extension is not allowed")
+                return False
+    else:
+        return False
+
+
+
+@main.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     
@@ -53,21 +105,26 @@ def profile():
             leaderboard +=1
 
     games = UserGameStatus.query.filter_by(user_id=current_user.id)
+    num_complete = UserGameStatus.query.filter_by(user_id=current_user.id, status="Completed")
+    user = User.query.filter_by(id=current_user.id).first()
 
     #categories_complete = [cracking, reverse] = 0, 1
 
     cat_dict = {
-        "Reverse Engineering": 4,
-        "Cryptography": 5,
-        "Web": 3,
-        "Linux": 4,
-        "Windows": 5,
-        "Forensics": 6,
+        "CTFs": 0,
+        "Reverse Engineering": 0,
+        "Cryptography": 0,
+        "Web": 0,
+        "Linux": 0,
+        "Windows": 0,
+        "Forensics": 0,
     }
 
 
     for game in games:
-        if game.games.category == "Reverse Engineering" and game.status == "Completed":
+        if game.games.category == "CTFs" and game.status == "Completed":
+            cat_dict['CTFs'] += 1
+        elif game.games.category == "Reverse Engineering" and game.status == "Completed":
             cat_dict['Reverse Engineering'] += 1
 
         elif game.games.category == "Cryptography" and game.status == "Completed":
@@ -85,7 +142,23 @@ def profile():
         elif game.games.category == "Forensics" and game.status == "Completed":
             cat_dict['Forensics'] += 1
     
-    return render_template('profile.html', name=current_user.name, image=current_user.image, points=current_user.points,reverse=cat_dict['Reverse Engineering'],crypto=cat_dict['Cryptography'],web=cat_dict['Web'],linux=cat_dict['Linux'],windows=cat_dict['Windows'], forensics=cat_dict['Forensics'], strongest=max(cat_dict, key=cat_dict.get), weakest=min(cat_dict, key=cat_dict.get),rank=leaderboard)
+    
+    if request.files and request.method == 'POST':
+        filename = upload_file()
+        if not filename:
+            flash('Error with upload.')
+            return redirect(url_for('main.profile'))
+        file = request.files["file"]
+        #path = os.path.join(current_app.config["IMG_UPLOADS"], filename)
+        file.save(os.path.join(current_app.config["IMG_UPLOADS"], filename))
+        user.image = filename
+        db.session.commit()
+
+        return redirect(url_for('main.profile'))
+    
+    
+    
+    return render_template('profile.html', name=current_user.name, image=current_user.image, points=current_user.points,ctfs=cat_dict['CTFs'],reverse=cat_dict['Reverse Engineering'],crypto=cat_dict['Cryptography'],web=cat_dict['Web'],linux=cat_dict['Linux'],windows=cat_dict['Windows'], forensics=cat_dict['Forensics'], strongest=max(cat_dict, key=cat_dict.get), weakest=min(cat_dict, key=cat_dict.get),rank=leaderboard, num_games=num_complete.count())
 
 
 @main.route("/create")
