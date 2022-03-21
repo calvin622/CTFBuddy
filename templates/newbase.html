@@ -16,13 +16,13 @@
 
 <body style="background: #222831;">
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top portfolio-navbar gradient" style="background: #222831;">
-        <div class="container"><a class="navbar-brand logo" href="index" style="color: #ffffff;">CTFBuddy</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand logo" href="{{ url_for('main.index') }}" style="color: #ffffff;">CTFBuddy</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     {% if current_user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('main.gameselect') }}">Play</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('main.create') }}">Create</a></li>
-                    <li class="nav-item"><a class="nav-link" href="hire-me">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('main.guide') }}">Guide</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('main.profile') }}">Account</a></li>
                     <li class="nav-item"><p class="nav-link" style="color: rgb(0,188,212);">Points: {{current_user.points}}</p></li>
                     {% endif %}
@@ -41,7 +41,7 @@
 
     <footer class="page-footer" style="background: #222831;border-top-style: none;">
         <div class="container">
-            <div class="links"><a href="#" style="color: #EEEEEE;">About</a><a href="#" style="color: #EEEEEE;">Terms</a></div>
+            <div class="links"><a href="{{ url_for('main.guide') }}" style="color: #EEEEEE;">About</a><a href="#" style="color: #EEEEEE;">Terms</a></div>
             <div class="social-icons"><a href="#"><i class="icon ion-social-github"></i></a></div>
         </div>
     </footer>
