@@ -1,68 +1,125 @@
 {% extends "newbase.html" %}
 
 {% block title %}Play CTF{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/fonts/font-awesome.min.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/fonts/fontawesome-all.min.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/fonts/ionicons.min.css')}}">
+
+
+    {% endblock %}
 
 {% block content %}
 <main class="page lanidng-page" style="background: #393E46;min-height: 100vh;">
-    <section class="portfolio-block block-intro" style="height: 570px;">
-        <div class="container">
-            <div class="avatar"
-                style="border-radius: 50px;background: url(&quot;../static/img/robot02_90810.png&quot;) center / contain;border-style: none;border-color: rgb(0,188,212);box-shadow: 0px 0px 10px 3px rgb(0,188,212);">
-            </div>
-            <div class="about-me">
-                <p style="color: #EEEEEE;margin: 0;margin-bottom: 22px;"><br>{{mess}}<br></p>
-                
-            </div>
-        </div>
-        
-        
-        <div class="container">
-            {% if flags != no_flags %}
-            <form action="#" method="post">
-                <input type="hidden" name="btn_identifier" value="hint_id_identifier" />
-            <button class="btn btn-lg" type="submit" style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">I need help</button>
-            {% else %}
-            <form action="{{ url_for('main.index') }}">
-
-            <button class="btn btn-lg" type="submit" style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Return to Games</button>
-                
-
-            {% endif %}
-        </form>
-        
-    </div>
-        
-    </section>
-    <div class="container">
+    <section class="portfolio-block block-intro" style="min-height: 100vh;">
         <div class="row" style="margin: 0 auto;margin-top: 0px;">
-            <div class="col-md-6 col-xxl-4 d-block" style="margin: 0 auto;height: 253px;background: var(--bs-gray-900);border-radius: 19px;width: 490px;border: 2px solid rgb(0,188,212);margin-top: 20px;">
-                <div class="flex-grow-0" style="padding-top: 9px;margin: 0 auto;border-style: none;border-color: rgb(0,188,212);border-bottom-style: solid;height: 113px;width: 100%;">
+            <div class="col-md-6 col-xxl-4 d-block"
+                style="margin: 0 auto;height: 270px;background: var(--bs-gray-900);border-radius: 19px;width: 530px;border: 2px solid rgb(0,188,212);margin-top: 20px;">
+                <div class="flex-grow-0"
+                    style="padding-top: 9px;margin: 0 auto;border-style: none;border-color: rgb(0,188,212);border-bottom-style: solid;height: 40%;width: 100%;">
                     <h2 style="color: rgb(255,255,255);text-align: center;width: 100%;">Flags</h2>
-                    <p style="color: rgb(255,255,255);text-align: center;font-size: 23px;width: 100%;">{{flags}} / {{no_flags}}</p>
+                    <p style="color: rgb(255,255,255);text-align: center;font-size: 23px;width: 100%;">{{flags}} /
+                        {{no_flags}}</p>
                 </div>
-                <div class="flex-grow-0" style="padding-top: 9px;margin: 0 auto;height: 113px;border-style: none;border-color: rgb(0,188,212);border-bottom-style: none;width: 10o%;margin-top: 10px;">
+                <div class="flex-grow-0"
+                    style="padding-top: 9px;margin: 0 auto;height: 60%;border-style: none;border-color: rgb(0,188,212);border-bottom-style: none;width: 100%;margin-top: 0px;">
                     <h2 style="color: rgb(255,255,255);text-align: center;">Hint Cost</h2>
-                    <p style="color: rgb(255,255,255);text-align: center;font-size: 23px;">{{hint_cost}} Points</p>
+                    <p style="color: rgb(255,255,255);text-align: center;font-size: 23px;margin-bottom: 0px;">
+                        {{hint_cost}} Points</p>
+
+                    {% if flags != no_flags %}
+                    <form action="#" method="post" style="padding: 4px;">
+                        <input type="hidden" name="btn_identifier" value="hint_id_identifier" />
+                        <button class="btn btn-lg" type="submit"
+                            style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;width: 100%;margin: 0 auto;margin-top: 7px;padding: 4px 19.2px;">I
+                            need help</button>
+                        {% else %}
+                        <form action="{{ url_for('main.index') }}" style="padding: 4px;">
+
+                            <button class="btn btn-lg" type="submit"
+                                style="background: #222831;width: 190px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Return
+                                to Games</button>
+
+
+                            {% endif %}
+                        </form>
+
+
                 </div>
             </div>
-        
-            <div class="col-md-6 col-xxl-4 d-block" style="margin: 0 auto;height: 253px;background: var(--bs-gray-900);border-radius: 19px;width: 490px;border: 2px solid rgb(0,188,212);margin-top: 20px;">
+            <div class="col-xxl-2 d-sm-none d-xxl-flex flex-grow-0 align-items-xxl-center">
+                <div class="avatar"
+                    style="border-radius: 50px;background: url(&quot;../static/img/robot02_90810.png&quot;) center / contain no-repeat;box-shadow: 0px 0px 10px 3px rgb(0,188,212);margin: 0 auto;width: 200px;height: 200px;">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xxl-4 d-block"
+                style="margin: 0 auto;height: 270px;background: var(--bs-gray-900);border-radius: 19px;width: 530px;border: 2px solid rgb(0,188,212);margin-top: 20px;">
+                {% if video %}
+                <div class="flex-grow-0"
+                    style="padding-top: 9px;margin: 0 auto;border-style: none;border-color: rgb(0,188,212);border-bottom-style: none;height: 100%;width: 100%;">
+                    <iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/{{video}}" width="560"
+                        height="315" style="width: 100%;height: 100%;"></iframe>
+
+                </div>
                 
-                <div class="flex-grow-0" style="padding-top: 28px;margin: 12px;">
-                    
-                    <form action="#" method="post">
-                    <input class="form-control-lg d-block" type="text" style="margin: 0 auto;background: #1a1b1c;margin-top: 25px;width: 100%;color: rgb(117,117,117);text-align: center;font-weight: bold;" placeholder="[insert flag here]" name="flag">
-                    <input type="hidden" name="btn_identifier" value="flag_id_identifier" />
-                    <button class="btn btn-lg" type="submit" style="background: #222831;width: 100%;margin: 0 auto;margin-top: 20px;color: rgb(0,188,212);border-style: solid;border-radius: 10px;box-shadow: 0px 0px 5px 2px rgb(0,188,212);height: 40px;padding: 4px 19.2px;">Submit</button>
-                </form>
-                <form action="#" method="post">
-                    <input type="hidden" name="btn_identifier" value="reset_id_identifier" />
-                    <button value="Reset" class="btn btn-lg" type="submit" style="background: #222831;width: 100%;margin: 0 auto;margin-top: 20px;color: rgb(0,188,212);border-style: solid;border-radius: 10px;box-shadow: 0px 0px 5px 2px rgb(0,188,212);height: 40px;padding: 4px 19.2px;">Reset</button>
-                </form>
+                {% else %}
+                <div class="flex-grow-0"
+                    style="padding-top: 9px;margin: 0 auto;border-style: none;border-color: rgb(0,188,212);border-bottom-style: solid;height: 40%;width: 100%;">
+                    <h2 style="color: rgb(255,255,255);text-align: center;width: 100%;">Video Tutorial Cost</h2>
+                    <p style="color: rgb(255,255,255);text-align: center;font-size: 23px;width: 100%;">10</p>
                 </div>
+                <div class="flex-grow-0"
+                    style="padding-top: 9px;margin: 0 auto;height: 60%;width: 100%;border-color: rgb(0,188,212);border-bottom-style: none;">
+                    
+                    <img class="d-block" src="/static/img/youtube-logo-png-2070.png" style="width: 77px;margin: 0 auto;" />
+                    {%if flags != no_flags %}
+                    <form action="#" method="post" style="padding: 4px;">
+                        <input type="hidden" name="btn_identifier" value="video_id_identifier" />
+                        <button class="btn btn-lg" type="submit"
+                            style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;width: 100%;margin: 0 auto;margin-top: 7px;padding: 4px 19.2px;">Buy Video</button>
+                        {% else %}
+                        <form action="{{ url_for('main.index') }}" style="padding: 4px;">
+
+                            <button class="btn btn-lg" type="submit"
+                                style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Return
+                                to Games</button>
+
+
+                            {% endif %}
+                        </form>
+                        {% endif %}
+                </div>
+
             </div>
-        </div>
-    </div>
-    <section class="portfolio-block skills" style="border-bottom-style: none;"></section>
+            
+
+            
+            <p style="color: #EEEEEE;margin: 0;margin-bottom: 22px;"><br />{{mess}}<br /><br /></p>
+
+
+
+            <div class="col-md-6 col-xxl-4 d-block"
+                style="margin: 0 auto;height: 265px;background: var(--bs-gray-900);border-radius: 19px;width: 490px;border: 2px solid rgb(0,188,212);margin-top: 20px;">
+
+                <form style="height: 70%;width: 100%;margin: 0 auto;" action="#" method="post">
+                    <input class="form-control-lg d-block" type="text"
+                        style="margin: 0 auto;background: #1a1b1c;margin-top: 25px;width: 100%;color: rgb(117,117,117);text-align: center;font-weight: bold;"
+                        placeholder="[insert flag here]" name="flag">
+                    <input type="hidden" name="btn_identifier" value="flag_id_identifier" />
+                    <button class="btn btn-lg" type="submit"
+                        style="background: #222831;width: 100%;margin: 0 auto;margin-top: 20px;color: rgb(0,188,212);border-style: solid;border-radius: 10px;box-shadow: 0px 0px 5px 2px rgb(0,188,212);height: 40px;padding: 4px 19.2px;">Submit</button>
+                </form>
+                <form class="d-xxl-flex" style="margin: 0 auto;height: 30%;padding-top: 0px;width: 100%;" action="#"
+                    method="post">
+                    <input type="hidden" name="btn_identifier" value="reset_id_identifier" />
+                    <button value="Reset" class="btn btn-lg" type="submit"
+                        style="background: #222831;width: 100%;margin: 0 auto;margin-top: 20px;color: rgb(0,188,212);border-style: solid;border-radius: 10px;box-shadow: 0px 0px 5px 2px rgb(0,188,212);height: 40px;padding: 4px 19.2px;">Reset</button>
+                </form>
+            </div>
+
+
+
+    </section>
 </main>
 {% endblock %}
