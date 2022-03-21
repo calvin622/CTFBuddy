@@ -48,6 +48,7 @@ class Games(db.Model):
     url = db.Column(db.String(200))
     video_url = db.Column(db.String(200))
     video_cost = db.Column(db.Integer)
+    image = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     usergamestatus = db.relationship('UserGameStatus', backref='games')
     flags = db.relationship('Flags', backref='games')
