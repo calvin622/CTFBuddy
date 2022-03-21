@@ -182,6 +182,6 @@ def play(games_name):
             return redirect(url_for(self_redirect, games_name=games_name))
     
     if "video" in session:
-        return render_template("play.html", mess=session["message"], flags=correct_flags, no_flags=flags.count(), hint_cost=hint_cost, video=session["video"])
+        return render_template("play.html", mess=session["message"], flags=correct_flags, no_flags=flags.count(), hint_cost=hint_cost, download=game_details.url, video=session["video"])
     else:
-        return render_template("play.html", mess=session["message"], flags=correct_flags, no_flags=flags.count(), hint_cost=hint_cost)
+        return render_template("play.html", mess=session["message"], flags=correct_flags, no_flags=flags.count(), hint_cost=hint_cost, download=game_details.url)
