@@ -6,84 +6,260 @@
 <main class="page lanidng-page" style="background: #393E46;min-height: 100vh;">
     <section class="portfolio-block block-intro" style="height: 395px;padding-top: 60px;">
         <div class="container">
-            <div class="avatar" style="border-radius: 50px;background: url(&quot;static/img/robot02_90810.png&quot;) center / contain;box-shadow: 0px 0px 10px 3px rgb(0,188,212);"></div>
+            <div class="avatar"
+                style="border-radius: 50px;background: url(&quot;static/img/robot02_90810.png&quot;) center / contain;box-shadow: 0px 0px 10px 3px rgb(0,188,212);">
+            </div>
             <div class="about-me">
-                <p style="color: #EEEEEE;margin: 0;margin-bottom: 22px;">Create and publish your very own challenge to CTFBuddy! If you need help, just let me know.<br></p>
+                <p style="color: #EEEEEE;margin: 0;margin-bottom: 22px;">Create and publish your very own challenge to
+                    CTFBuddy! You will also earn 1000 points!<br></p>
             </div>
         </div>
-        <div class="container"><button class="btn btn-lg" type="submit" style="background: #222831;margin: 0 auto;margin-left: 0px;width: 140px;color: rgb(0,188,212);border-style: solid;border-radius: 10px;box-shadow: 0px 0px 5px 2px rgb(0,188,212);">I need Help</button></div>
+        <div class="container"><button class="btn btn-lg" type="submit"
+                style="background: #222831;margin: 0 auto;margin-left: 0px;width: 140px;color: rgb(0,188,212);border-style: solid;border-radius: 10px;box-shadow: 0px 0px 5px 2px rgb(0,188,212);">I
+                need Help</button></div>
     </section>
     {% with messages = get_flashed_messages() %}
-            {% if messages %}
-            <div style="color: rgb(255,0,0);" class="text-center notification is-danger">
-                {{ messages[0] }}
-            </div>
-            {% endif %}
-            {% endwith %}
+    {% if messages %}
+    <div style="color: rgb(255,0,0);" class="text-center notification is-danger">
+        {{ messages[0] }}
+    </div>
+    {% endif %}
+    {% endwith %}
     <section class="portfolio-block contact">
         <div class="container">
             <form method="post" action="/create" enctype="multipart/form-data">
-                
+
                 <div style="margin-bottom: 10px;">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1" style="color: var(--bs-white);">General</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2" style="color: var(--bs-white);--bs-body-bg: var(--bs-gray);">Flags</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3" style="color: var(--bs-white);">Upload</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4" style="color: var(--bs-white);">Publish</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link active" role="tab"
+                                data-bs-toggle="tab" href="#tab-1" style="color: var(--bs-white);">General</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab"
+                                href="#tab-2" style="color: var(--bs-white);--bs-body-bg: var(--bs-gray);">Flags</a>
+                        </li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab"
+                                href="#tab-3" style="color: var(--bs-white);">Upload</a></li>
+                        <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab"
+                                href="#tab-4" style="color: var(--bs-white);">Publish</a></li>
                     </ul>
-                    
+
                     <div class="tab-content">
                         <div class="tab-pane active" role="tabpanel" id="tab-1">
-                            
-                                
-                    
-                            <div class="mb-3"><label class="form-label" for="name" style="color: var(--bs-white);">Challenge Name</label><input class="form-control" type="text" name="name" placeholder="name" style="background: #282b30;color: var(--bs-white);"></div>
-                            <div class="mb-3"><label class="form-label" for="subject" style="color: var(--bs-white);">Description</label><textarea class="form-control item" type="text" name="description" style="background: #282b30;color: var(--bs-white);" placeholder="Description about your challenge"></textarea></div>
-                            <div class="mb-3"><label class="form-label" for="cat" style="color: var(--bs-white);">Category</label>
+
+
+
+                            <div class="mb-3"><label class="form-label" for="name"
+                                    style="color: var(--bs-white);">Challenge Name</label><input class="form-control"
+                                    type="text" name="name" placeholder="name"
+                                    style="background: #282b30;color: var(--bs-white);"></div>
+                            <div class="mb-3"><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Description</label>
+                                <p
+                                    style="margin-bottom: 10px;color: rgb(0,188,212);font-size: 13px;font-style: italic;">
+                                    The description should give an overview of the challenge, and how the player should start.</p><textarea
+                                    class="form-control item" type="text" name="description"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Description about your challenge"></textarea>
+                            </div>
+                            <div class="mb-3"><label class="form-label" for="cat"
+                                    style="color: var(--bs-white);">Category</label>
                                 <div class="dropdown d-flex">
-                                <select class="btn btn-primary dropdown-toggle" style="background: #282b30;border-style: solid;border-color: var(--bs-white);" name="category" id="lang">
-                                    <option value="select">Select a Category</option>
-                                    <option value="Reverse Engineering">Reverse Engineering</option>
-                                    <option value="Cryptography">Cryptography</option>
-                                    <option value="Web">Web</option>
-                                    <option value="Linux">Linux</option>
-                                    <option value="Windows">Windows</option>
-                                    <option value="Forensics">Forensics</option>
-                                    
-                                  </select>
+                                    <select class="btn btn-primary dropdown-toggle"
+                                        style="background: #282b30;border-style: solid;border-color: var(--bs-white);"
+                                        name="category" id="lang">
+                                        <option value="select">Select a Category</option>
+                                        <option value="CTFs">CTF</option>
+                                        <option value="Reverse Engineering">Reverse Engineering</option>
+                                        <option value="Cryptography">Cryptography</option>
+                                        <option value="Web">Web</option>
+                                        <option value="Linux">Linux</option>
+                                        <option value="Windows">Windows</option>
+                                        <option value="Forensics">Forensics</option>
+
+                                    </select>
                                 </div>
                             </div>
-                            <div class="d-table-row mb-3"><label class="form-label" for="email" style="color: var(--bs-white);">Difficulty</label>
-                                
+                            <div class="d-table-row mb-3"><label class="form-label" for="email"
+                                    style="color: var(--bs-white);">Difficulty</label>
+
                                 <div class="d-flex">
-                                    <div class="form-check" style="margin-right: 15px;"><input class="form-check-input" type="radio" id="formCheck-2" name="difficulty" value="Easy"><label class="form-check-label" for="formCheck-2" style="color: var(--bs-teal);">Easy</label></div>
-                                    <div class="form-check" style="margin-right: 15px;"><input class="form-check-input" type="radio" id="formCheck-3" name="difficulty" value="Medium"><label class="form-check-label" for="formCheck-3" style="color: var(--bs-orange);">Medium</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="radio" id="formCheck-1" name="difficulty" value="Hard"><label class="form-check-label" for="formCheck-1" style="color: #ff3549;">Hard</label></div>
+                                    <div class="form-check" style="margin-right: 15px;"><input class="form-check-input"
+                                            type="radio" id="formCheck-2" name="difficulty" value="Easy"><label
+                                            class="form-check-label" for="formCheck-2"
+                                            style="color: var(--bs-teal);">Easy</label></div>
+                                    <div class="form-check" style="margin-right: 15px;"><input class="form-check-input"
+                                            type="radio" id="formCheck-3" name="difficulty" value="Medium"><label
+                                            class="form-check-label" for="formCheck-3"
+                                            style="color: var(--bs-orange);">Medium</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="radio"
+                                            id="formCheck-1" name="difficulty" value="Hard"><label
+                                            class="form-check-label" for="formCheck-1"
+                                            style="color: #ff3549;">Hard</label></div>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane" role="tabpanel" id="tab-2">
-                            
 
-                            <p style="color: var(--bs-white);">Enter in your flags, along with a hint for each flag.</p>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                            <p style="color: var(--bs-white);">Enter in your flags, along with a hint for each flag (min of 1 flag).</p>
+                            <p style="margin-bottom: 10px;color: rgb(255,255,255);font-size: 13px;font-style: italic;">Points scoring guide (Multiples of 10 only):<br></p>
+                            <p style="margin-bottom: 10px;color: var(--bs-teal);font-size: 13px;font-style: italic;">Easy flags: 10 - 50 points<br></p>
+                            <p style="margin-bottom: 10px;color: var(--bs-orange);font-size: 13px;font-style: italic;">Medium flags: 60 - 100 points<br></p>
+                            <p style="margin-bottom: 10px;color: #ff3549;font-size: 13px;font-style: italic;">Hard flags: 110 - 150 points</p>
+                            <br>
                             
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 1</label><input class="form-control item" type="text" name="flag1" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points1" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 1 Hint</label><textarea class="form-control item" name="flag1_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 2</label><input class="form-control item" type="text" name="flag2" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points2" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 2 Hint</label><textarea class="form-control item" name="flag2_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 3</label><input class="form-control item" type="text" name="flag3" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points3" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 3 Hint</label><textarea class="form-control item" name="flag3_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 4</label><input class="form-control item" type="text" name="flag4" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points4" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 4 Hint</label><textarea class="form-control item" name="flag4_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 5</label><input class="form-control item" type="text" name="flag5" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points5" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 5 Hint</label><textarea class="form-control item" name="flag5_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 6</label><input class="form-control item" type="text" name="flag6" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points6" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 6 Hint</label><textarea class="form-control item" name="flag6_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 7</label><input class="form-control item" type="text" name="flag7" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points7" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 7 Hint</label><textarea class="form-control item" name="flag7_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 8</label><input class="form-control item" type="text" name="flag8" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points8" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 8 Hint</label><textarea class="form-control item" name="flag8_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 9</label><input class="form-control item" type="text" name="flag9" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points9" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 9 Hint</label><textarea class="form-control item" name="flag9_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
-                            <div class="mb-3" style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);"><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 10</label><input class="form-control item" type="text" name="flag10" style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label class="form-label" for="subject" style="color: var(--bs-white);">Points For Flag</label><input class="form-control form-control-sm" type="number" style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0" placeholder="1" name="points10" /><label class="form-label" for="subject" style="color: var(--bs-white);">Flag 10 Hint</label><textarea class="form-control item" name="flag10_hint" style="background: #282b30;color: var(--bs-white);" placeholder="Hint"></textarea></div>
+                        </div>
+
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    1</label><input class="form-control item" type="text" name="flag1"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points1" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 1 Hint</label><textarea
+                                    class="form-control item" name="flag1_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    2</label><input class="form-control item" type="text" name="flag2"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points2" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 2 Hint</label><textarea
+                                    class="form-control item" name="flag2_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    3</label><input class="form-control item" type="text" name="flag3"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points3" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 3 Hint</label><textarea
+                                    class="form-control item" name="flag3_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    4</label><input class="form-control item" type="text" name="flag4"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points4" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 4 Hint</label><textarea
+                                    class="form-control item" name="flag4_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    5</label><input class="form-control item" type="text" name="flag5"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points5" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 5 Hint</label><textarea
+                                    class="form-control item" name="flag5_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    6</label><input class="form-control item" type="text" name="flag6"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points6" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 6 Hint</label><textarea
+                                    class="form-control item" name="flag6_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    7</label><input class="form-control item" type="text" name="flag7"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points7" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 7 Hint</label><textarea
+                                    class="form-control item" name="flag7_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    8</label><input class="form-control item" type="text" name="flag8"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points8" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 8 Hint</label><textarea
+                                    class="form-control item" name="flag8_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    9</label><input class="form-control item" type="text" name="flag9"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points9" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 9 Hint</label><textarea
+                                    class="form-control item" name="flag9_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
+                            <div class="mb-3"
+                                style="margin-top: 15px;box-shadow: 0px 0px 6px 4px var(--bs-gray-800);padding: 6px;border: 2px solid var(--bs-gray-800);">
+                                <label class="form-label" for="subject" style="color: var(--bs-white);">Flag
+                                    10</label><input class="form-control item" type="text" name="flag10"
+                                    style="background: #282b30;color: var(--bs-white);" placeholder="Flag"><label
+                                    class="form-label" for="subject" style="color: var(--bs-white);">Points
+                                    Awarded</label><input class="form-control form-control-sm" type="number"
+                                    style="background: #282b30;color: var(--bs-white);width: 70px;" max="10000" min="0"
+                                    placeholder="1" name="points10" /><label class="form-label" for="subject"
+                                    style="color: var(--bs-white);">Flag 10 Hint</label><textarea
+                                    class="form-control item" name="flag10_hint"
+                                    style="background: #282b30;color: var(--bs-white);"
+                                    placeholder="Hint"></textarea></div>
                         </div>
                         <div class="tab-pane" role="tabpanel" id="tab-3">
-                            <p style="color: var(--bs-white);">Upload only one challenge file here</p><input type="file" class="custom-file-input" name="file" id="image" oninput="filesize(this);">
+                            <p style="color: var(--bs-white);">Upload only one challenge file here</p>
+                            <p style="margin-bottom: 10px;color: rgb(0,188,212);font-size: 13px;font-style: italic;">Supported file types include: .ova, .zip, .txt</p>
+                            <input type="file"
+                                class="custom-file-input" name="file" id="image" oninput="filesize(this);">
+                                
+                            <div class="mb-3"><label class="form-label" for="name"
+                                    style="color: var(--bs-white);"><br>Youtube Video Url</label><p style="margin-bottom: 10px;color: rgb(0,188,212);font-size: 13px;font-style: italic;">Paste the full Youtube link to your explanation video, detailing how to solve each flag. Your Youtube video should be unlisted, you can get a shareable link within your Youtube Studio. </p><input class="form-control"
+                                    type="text" name="video" placeholder="url"
+                                    style="background: #282b30;color: var(--bs-white);">
+                                
+                                </div>
+                           
                         </div>
                         <div class="tab-pane" role="tabpanel" id="tab-4">
                             <p></p>
-                            <div class="mb-3"><button class="btn btn-primary btn-lg d-block w-100" type="submit" style="background: #222831;color: rgb(0,188,212);border-color: rgb(0,188,212);border-radius: 10px;box-shadow: 0px 0px 5px 2px rgb(0,188,212);">Save and Publish</button></div>
+                            <div class="mb-3"><button class="btn btn-primary btn-lg d-block w-100" type="submit"
+                                    style="background: #222831;color: rgb(0,188,212);border-color: rgb(0,188,212);border-radius: 10px;box-shadow: 0px 0px 5px 2px rgb(0,188,212);">Save
+                                    and Publish</button></div>
                         </div>
                     </div>
                 </div>
@@ -97,10 +273,10 @@
 {% block script %}
 <script>
 
-    function filesize(elem){
-      document.cookie = `filesize=${elem.files[0].size}`
+    function filesize(elem) {
+        document.cookie = `filesize=${elem.files[0].size}`
     }
-  
-  </script>
-  
+
+</script>
+
 {% endblock %}
