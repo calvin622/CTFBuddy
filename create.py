@@ -9,6 +9,7 @@ from contextlib import suppress
 
 create = Blueprint('create', __name__)
 
+
 def allowed_file(filename):
 
     if not "." in filename:
@@ -30,7 +31,7 @@ def allowed_file_filesize(filesize):
         return False
 
 
-def upload_file():
+def upload_file(type):
 
     if request.files:
 
@@ -40,7 +41,12 @@ def upload_file():
                 print("Filesize exceeded maximum limit")
                 return False
 
-            file = request.files["file"]
+            if type == "file":
+                file = request.files["file"]
+            elif type == "image":
+                file = request.files["image"]
+            else:
+                return False
 
             if file.filename == "":
                 print("No filename")
@@ -55,6 +61,7 @@ def upload_file():
                 return False
     else:
         return False
+
 
 @create.route('/create', methods=['POST'])
 @login_required
@@ -71,21 +78,26 @@ def create_post():
     flag_hint_strings = ['flag1_hint', 'flag2_hint', 'flag3_hint', 'flag4_hint',
                          'flag5_hint', 'flag6_hint', 'flag7_hint', 'flag8_hint', 'flag9_hint', 'flag10_hint']
     flag_point_strings = ['points1', 'points2', 'points3', 'points4',
-                         'points5', 'points6', 'points7', 'points8', 'points9', 'points10']
+                          'points5', 'points6', 'points7', 'points8', 'points9', 'points10']
     #hint_cost_strings = ['hintcost1','hintcost2','hintcost3','hintcost4','hintcost5','hintcost6','hintcost7','hintcost8','hintcost9','hintcost10']
 
     query = urlparse(video)
-    if query.hostname == 'youtu.be': return query.path[1:]
+    if query.hostname == 'youtu.be':
+        return query.path[1:]
     if query.hostname in {'www.youtube.com', 'youtube.com', 'music.youtube.com'}:
-        
-        if query.path == '/watch': video = parse_qs(query.query)['v'][0]
-        if query.path[:7] == '/watch/': video = query.path.split('/')[1]
-        if query.path[:7] == '/embed/': video = query.path.split('/')[2]
-        if query.path[:3] == '/v/': video = query.path.split('/')[2]
+
+        if query.path == '/watch':
+            video = parse_qs(query.query)['v'][0]
+        if query.path[:7] == '/watch/':
+            video = query.path.split('/')[1]
+        if query.path[:7] == '/embed/':
+            video = query.path.split('/')[2]
+        if query.path[:3] == '/v/':
+            video = query.path.split('/')[2]
     else:
         flash('Invalid Youtube Link.')
         return redirect(url_for('main.create'))
-    
+
     if not name or not description or not category or not difficulty:
         flash('Not enough general information provided.')
         return redirect(url_for('main.create'))
@@ -95,7 +107,7 @@ def create_post():
     if game:
         flash('Game name already exists.')
         return redirect(url_for('main.create'))
-    
+
     flag_num = 0
     total_points = 0
     while flag_num < 10:
@@ -121,26 +133,37 @@ def create_post():
 
         else:
             flag_num += 1
-    
-    if request.files:
-        filename = upload_file()
+
+    print(request.files["file"])
+    print(request.files["image"])
+
+    if request.files and request.files["file"]:
+        filename = upload_file("file")
         if not filename:
             flash('Error with upload.')
             return redirect(url_for('main.create'))
-    
+
+    if request.files and request.files["image"]:
+        filename_image = upload_file("image")
+        if not filename_image:
+            flash('Error with upload.')
+            return redirect(url_for('main.create'))
+
     if not video:
         flash('No video url provided.')
         return redirect(url_for('main.create'))
-    
 
-    new_game = Games(name=name,description=description, category=category,
-                     difficulty=difficulty, url=filename, video_url=video, video_cost=round((total_points*0.75)/10)*10, user_id=current_user.id)
-    
+    new_game = Games(name=name, description=description, category=category,
+                     difficulty=difficulty, url=filename, video_url=video, video_cost=round((total_points*0.75)/10)*10, image=filename_image, user_id=current_user.id)
+
     current_user.points += 1000
-    
+
     file = request.files["file"]
+    file_image = request.files["image"]
+    file_image.save(os.path.join(
+        current_app.config["CTF_IMAGE_UPLOADS"], filename_image))
     file.save(os.path.join(current_app.config["FILE_UPLOADS"], filename))
-    
+
     # add the new game and flags to db
     db.session.add(new_game)
     db.session.commit()
