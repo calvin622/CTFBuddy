@@ -4,25 +4,53 @@
 {% endblock %}
 {% block content %}
 <main class="page lanidng-page" style="background: #393E46;min-height: 100vh;">
-    <div id="content" style="position: relative;background: #393E46;border: 1px none var(--bs-red);border-top-style: none;border-bottom-color: rgb(237, 225, 82);box-shadow: 0px 0px 6px;">
+    <div id="content"
+        style="position: relative;background: #393E46;border: 1px none var(--bs-red);border-top-style: none;border-bottom-color: rgb(237, 225, 82);box-shadow: 0px 0px 6px;">
         <div class="container-fluid">
-            <h3 class="mb-4" style="color: rgb(255,255,255);margin-left: 4px;margin-top: 19px;padding-top: 14px;">Account Information</h3>
+            <h3 class="mb-4" style="color: rgb(255,255,255);margin-left: 4px;margin-top: 19px;padding-top: 14px;">
+                Account Information</h3>
             <div class="row mb-3">
                 <div class="col-lg-4">
                     <div class="card mb-3" style="border-style: none;">
-                        <div class="card-body text-center" style="background: var(--bs-gray-900);border: 1px solid rgb(0,188,212);"><img class="rounded-circle mb-3 mt-4" src="{{image}}" width="160" height="160">                            <div class="mb-3"><button class="btn btn-lg" type="submit" style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;font-size: 15px;">Change Avatar</button></div>
-                            <div class="mb-3"><a href="{{ url_for('auth.logout') }}"><button class="btn btn-lg" type="submit" style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;font-size: 15px;">Logout</button></a></div>
+                        <div class="card-body text-center"
+                            style="background: var(--bs-gray-900);border: 1px solid rgb(0,188,212);"><img
+                                class="rounded-circle mb-3 mt-4" src="static/img/profile/{{image}}" width="160" height="160">
+
+                            <form method="post" action="/profile" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                <label style="background: #222831;width: 140px;height: 35px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;font-size: 15px;padding-top: 3px;" for="image" class="custom-file-upload">
+                                    Choose avatar
+                                </label>
+                                <input hidden type="file" name="file" id="image" oninput="filesize(this);">
+                            </div>
+
+                            <div class="mb-3"><button class="btn btn-lg" type="submit"
+                                    style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;font-size: 15px;">Save Changes</button></div>
+                                </form>
+
+                            <div class="mb-3"><a href="{{ url_for('auth.logout') }}"><button class="btn btn-lg"
+                                        type="submit"
+                                        style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;font-size: 15px;">Logout</button></a>
+                            </div>
                         </div>
                     </div>
                     <div class="card shadow mb-4" style="border-style: none;">
-                        <div class="card-header py-3" style="background: var(--bs-gray-900);border: 1px solid rgb(0,188,212);">
+                        <div class="card-header py-3"
+                            style="background: var(--bs-gray-900);border: 1px solid rgb(0,188,212);">
                             <h6 class="fw-bold m-0" style="color: rgb(255,255,255);">Statistics</h6>
                         </div>
-                        <div class="card-body" style="background: var(--bs-gray-900);border: 1px solid rgb(0,188,212);border-bottom-color: rgb(0,188,212);">
-                            <h4 class="small fw-bold" style="color: var(--bs-white);">Rank<span class="float-end">{{rank}}</span></h4>
-                            <h4 class="small fw-bold" style="color: rgb(255,255,255);"><span class="float-end"></span></h4>
-                            <h4 class="small fw-bold" style="color: var(--bs-white);">Strongest Subject<span class="float-end">{{strongest}}</span></h4>
-                            <h4 class="small fw-bold" style="color: var(--bs-white);">Weakest Subject<span class="float-end">{{weakest}}</span></h4>
+                        <div class="card-body"
+                            style="background: var(--bs-gray-900);border: 1px solid rgb(0,188,212);border-bottom-color: rgb(0,188,212);">
+                            <h4 class="small fw-bold" style="color: var(--bs-white);">Rank<span
+                                    class="float-end">{{rank}}</span></h4>
+                                    <h4 class="small fw-bold" style="color: var(--bs-white);">Games Complete<span
+                                        class="float-end">{{num_games}}</span></h4>
+                            <h4 class="small fw-bold" style="color: rgb(255,255,255);"><span class="float-end"></span>
+                            </h4>
+                            <h4 class="small fw-bold" style="color: var(--bs-white);">Strongest Subject<span
+                                    class="float-end">{{strongest}}</span></h4>
+                            <h4 class="small fw-bold" style="color: var(--bs-white);">Weakest Subject<span
+                                    class="float-end">{{weakest}}</span></h4>
                         </div>
                     </div>
                 </div>
@@ -38,7 +66,8 @@
                                         </div>
                                         <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
                                     </div>
-                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since
+                                        last month</p>
                                 </div>
                             </div>
                         </div>
@@ -52,40 +81,26 @@
                                         </div>
                                         <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
                                     </div>
-                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since
+                                        last month</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="card shadow mb-3" style="border-style: none;">
-                                <div class="card-header py-3" style="background: var(--bs-gray-900);border: 1px solid rgb(0,188,212);">
-                                    <p class="m-0 fw-bold" style="color: rgb(255,255,255);">Change Password</p>
-                                </div>
-                                <div class="card-body" style="background: var(--bs-gray-900);border: 1px solid rgb(0,188,212);border-bottom-color: rgb(0,188,212);">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="mb-3"><input class="form-control" type="text" id="username-2" placeholder="current password" name="username"></div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="mb-3"><input class="form-control" type="email" id="email-3" placeholder="new password" name="email"><input class="form-control" type="email" id="email-1" placeholder="repeat password" name="email" style="margin-top: 15px;"></div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3"><button class="btn btn-lg" type="submit" style="background: #222831;width: 140px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;font-size: 15px;">Save Settings</button></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+
+
+                    <div style="color: rgb(255,255,255);padding: 15px;border: 1px solid rgb(0,188,212);"><canvas
+                            data-bss-chart="{&quot;type&quot;:&quot;radar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;CTFs&quot;,&quot;Reverse Engineering&quot;,&quot;Cryptography&quot;,&quot;Web&quot;,&quot;Linux&quot;,&quot;Windows&quot;,&quot;Forensics&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Rooms Complete&quot;,&quot;backgroundColor&quot;:&quot;rgba(0,188,212,0.49)&quot;,&quot;borderColor&quot;:&quot;rgb(0,188,212)&quot;,&quot;data&quot;:[&quot;{{ctfs}}&quot;,&quot;{{reverse}}&quot;,&quot;{{crypto}}&quot;,&quot;{{web}}&quot;,&quot;{{linux}}&quot;,&quot;{{windows}}&quot;,&quot;{{forensics}}&quot;],&quot;fill&quot;:true,&quot;borderWidth&quot;:&quot;&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:true,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;,&quot;fontColor&quot;:&quot;#ffffff&quot;},&quot;position&quot;:&quot;top&quot;},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;bold&quot;,&quot;fontColor&quot;:&quot;#ffffff&quot;},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:true,&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;rgba(255,255,255,0)&quot;,&quot;fontSize&quot;:&quot;0&quot;,&quot;lineHeight&quot;:&quot;0&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;beginAtZero&quot;:false}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:true,&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;rgba(255,255,255,0)&quot;,&quot;fontSize&quot;:&quot;0&quot;,&quot;lineHeight&quot;:&quot;0&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;beginAtZero&quot;:false}}]}}}"></canvas>
                     </div>
- 
-                    <div style="color: rgb(255,255,255);padding: 15px;border: 1px solid rgb(0,188,212);"><canvas data-bss-chart="{&quot;type&quot;:&quot;radar&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Reverse Engineering&quot;,&quot;Cryptography&quot;,&quot;Web&quot;,&quot;Linux&quot;,&quot;Windows&quot;,&quot;Forensics&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Rooms Complete&quot;,&quot;backgroundColor&quot;:&quot;rgba(0,188,212,0.49)&quot;,&quot;borderColor&quot;:&quot;rgb(0,188,212)&quot;,&quot;data&quot;:[&quot;{{reverse}}&quot;,&quot;{{crypto}}&quot;,&quot;{{web}}&quot;,&quot;{{linux}}&quot;,&quot;{{windows}}&quot;,&quot;{{forensics}}&quot;],&quot;fill&quot;:true,&quot;borderWidth&quot;:&quot;&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:true,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;,&quot;fontColor&quot;:&quot;#ffffff&quot;},&quot;position&quot;:&quot;top&quot;},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;bold&quot;,&quot;fontColor&quot;:&quot;#ffffff&quot;},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:true,&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;rgba(255,255,255,0)&quot;,&quot;fontSize&quot;:&quot;0&quot;,&quot;lineHeight&quot;:&quot;0&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;beginAtZero&quot;:false}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:true,&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;rgba(255,255,255,0)&quot;,&quot;fontSize&quot;:&quot;0&quot;,&quot;lineHeight&quot;:&quot;0&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;beginAtZero&quot;:false}}]}}}"></canvas></div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+
+
+
 {% endblock %}
 {% block script %}
 <script src="{{ url_for('static', filename='bootstrap/js/chart.min.js')}}"></script>
