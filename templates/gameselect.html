@@ -6,13 +6,25 @@
 {% endblock %}
 {% block content %}
 <main class="page lanidng-page" style="background: #393E46;min-height: 100vh;">
-    <section class="portfolio-block block-intro" style="height: 340px;padding-top: 60px;">
+    <section class="portfolio-block block-intro" style="height: 390px;padding-top: 60px;">
         <div class="container">
             <div class="avatar"
                 style="border-radius: 50px;background: url(&quot;static/img/robot02_90810.png&quot;) center / contain;border-style: none;border-color: rgb(0,188,212);box-shadow: 0px 0px 10px 3px rgb(0,188,212);">
             </div>
             <div class="about-me">
                 <p style="color: #EEEEEE;">Choose your challenge.</p>
+               
+                        <form action="{{ url_for('main.guide') }}" style="padding: 4px;">
+
+                            <button class="btn btn-lg" type="submit"
+                                style="background: #222831;width: 160px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Need Help?</button>
+
+
+                          
+                        </form>
+
+
+                
             </div>
         </div>
     </section>
@@ -69,7 +81,7 @@
                         {% for info in all_games %}
                         <tr style="border-top-width: 3px;">
                             
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.user.name}}</td>
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="static/img/profile/{{info.user.image}}">{{info.user.name}}</td>
                             <td>{{info.name}}</td>
                             <td>{{info.category}}</td>
                             <td>{{info.difficulty}}</td>
@@ -97,7 +109,7 @@
                         {% for info in started_games %}
                         <tr style="border-top-width: 3px;">
                             
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.user.name}}</td>
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="static/img/profile/{{info.user.image}}">{{info.user.name}}</td>
                             <td>{{info.games.name}}</td>
                             <td>{{info.games.category}}</td>
                             <td>{{info.games.difficulty}}</td>
@@ -127,7 +139,7 @@
                         {% for info in completed_games %}
                         <tr style="border-top-width: 3px;">
                             
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="{{info.user.image}}">{{info.user.name}}</td>
+                            <td><img class="rounded-circle me-2" width="30" height="30" src="static/img/profile/{{info.user.image}}">{{info.user.name}}</td>
                             <td>{{info.games.name}}</td>
                             <td>{{info.games.category}}</td>
                             <td>{{info.games.difficulty}}</td>
@@ -153,22 +165,12 @@
                 </div>
 
                 
-                    <tfoot>
-                        <tr
-                            style="background: var(--bs-table-active-color);border-style: none;border-color: var(--bs-table-active-color);">
-
-                        </tr>
-                    </tfoot>
+                  
                 </table>
 
             </div>
         
-            <div class="row">
-                <div class="col-md-6 align-self-center">
-                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"
-                        style="color: rgb(0,188,212);">Showing 1 to 10 of 27</p>
-                </div>
-            </div>
+            
         </div>
     </div>
 </main>
