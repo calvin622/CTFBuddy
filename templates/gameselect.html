@@ -2,7 +2,9 @@
 {% block title %}Game Select{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/filter.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/Animated-Pretty-Product-List-v12.css')}}">
 <script src="{{ url_for('static', filename='bootstrap/js/filter.js')}}"></script>
+<script src="{{ url_for('static', filename='bootstrap/js/Animated-Pretty-Product-List-v12.js')}}"></script>
 {% endblock %}
 {% block content %}
 <main class="page lanidng-page" style="background: #393E46;min-height: 100vh;">
@@ -13,18 +15,19 @@
             </div>
             <div class="about-me">
                 <p style="color: #EEEEEE;">Choose your challenge.</p>
-               
-                        <form action="{{ url_for('main.guide') }}" style="padding: 4px;">
 
-                            <button class="btn btn-lg" type="submit"
-                                style="background: #222831;width: 160px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Need Help?</button>
+                <form action="{{ url_for('main.guide') }}" style="padding: 4px;">
 
-
-                          
-                        </form>
+                    <button class="btn btn-lg" type="submit"
+                        style="background: #222831;width: 160px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Need
+                        Help?</button>
 
 
-                
+
+                </form>
+
+
+
             </div>
         </div>
     </section>
@@ -33,145 +36,165 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6 text-nowrap">
-                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label
-                            class="form-label" style="color: var(--bs-white);">Show&nbsp;<select
-                                class="d-inline-block form-select form-select-sm"
-                                style="background: #222831;border-color: rgb(0,188,212);color: rgb(255,255,255);">
-                                <option value="10" selected="">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>&nbsp;</label></div>
-                            <div id="myBtnContainer">
-                
-                                <button class="btn active" class="btn" onclick="filterSelection('all_games')"> Show all</button>
-                                <button class="btn" onclick="filterSelection('col-started')"> Started</button>
-                                <button class="btn" onclick="filterSelection('completed_games')"> Completed</button>
-                                
-                              </div>
 
-                              
-                </div>
-                <div class="col-md-6">
-                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input
-                                type="search" class="form-control form-control-sm" aria-controls="dataTable"
-                                placeholder="Search"
-                                style="background: #222831;color: rgb(255,255,255);border-color: rgb(0,188,212);"></label>
+                    <div id="myBtnContainer">
+
+                        <button class="btn active" class="btn" onclick="filterSelection('all_games')"> Show all</button>
+                        <button class="btn" onclick="filterSelection('col-started')"> Started</button>
+                        <button class="btn" onclick="filterSelection('completed_games')"> Completed</button>
+
                     </div>
+
+
                 </div>
+
             </div>
-            
-            <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info"
-                style="border-bottom-color: var(--bs-table-active-color);">
-                <table class="table my-0" id="dataTable">
-                    <thead>
-                        <tr style="color: var(--bs-white);">
-                            <th>Creator</th>
-                            <th>CTF</th>
-                            <th>Category</th>
-                            <th>Difficulty&nbsp;</th>
-                            <th>Status</th>
-                            <th>Download</th>
-                            <th>Play</th>
-                        </tr>
-                    </thead>
-                    
-                    <tbody  class="filterDiv all_games" style="color: var(--bs-white);border-style: solid;border-color: #222831;">
-                        
+
+
+
+            <div class="container">
+                <div class="row product-list dev">
+
+                    <div class="filterDiv all_games">
                         {% for info in all_games %}
-                        <tr style="border-top-width: 3px;">
-                            
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="static/img/profile/{{info.user.image}}">{{info.user.name}}</td>
-                            <td>{{info.name}}</td>
-                            <td>{{info.category}}</td>
-                            <td>{{info.difficulty}}</td>
-                            <td>New!</td>
-    
-            
-                            <td style="width: 195.781px;"><a
-                                    href="{{ url_for('main.download', path=info.url) }}"><button
-                                        class="btn" type="submit"
-                                        style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
-                            </td>
-                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', games_name=info.name) }}"><button class="btn"
-                                        type="submit"
-                                        style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
-                            </td>
-                        
-                        </tr>
+                        <div class="col-sm-6 col-md-4 product-item animation-element slide-top-left">
+                            <div class="product-container"
+                                style="background: #222831;border-style: none;border-color: rgb(0,188,212);">
+                                <div class="row">
+                                    <div class="col-md-12"><a class="product-image"
+                                            href="{{ url_for('ctf.play', games_name=info.name) }}"
+                                            style="height: 225px;padding: 0;"><img
+                                                src="static/img/ctf_images/{{info.image}}"
+                                                style="width: 100%;height: 100%;" /></a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h2><a href="#" style="color: var(--bs-white);">{{info.name}}</a></h2>
+                                        <p style="color: var(--bs-white);">Category: {{info.category}}</p>
+                                        <p style="color: var(--bs-white);">Difficulty: {{info.difficulty}}</p>
+                                    </div>
+                                    <div class="col-4"><a class="small-text" href="#"
+                                            style="color: rgb(0,188,212);font-family: Lora, serif;"><img
+                                                style="width: 22px;height: 22px;margin-right: 4px;"
+                                                src="static/img/profile/{{info.user.image}}" />{{info.user.name}}</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6 d-grid" >
+                                        <form action="{{ url_for('ctf.play', games_name=info.name) }}">
+                                        <button
+                                            class="btn" type="submit"
+                                            style="background: #222831;margin: 0 auto;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
+                                        </form>
+                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {% endfor %}
+                    </div>
                     
-                    
-                    </tbody>
 
-                    <tbody  class="filterDiv col-started" style="color: var(--bs-white);border-style: solid;border-color: #222831;">
-                        
+                    <div class="filterDiv col-started">
                         {% for info in started_games %}
-                        <tr style="border-top-width: 3px;">
-                            
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="static/img/profile/{{info.user.image}}">{{info.user.name}}</td>
-                            <td>{{info.games.name}}</td>
-                            <td>{{info.games.category}}</td>
-                            <td>{{info.games.difficulty}}</td>
-                            
-    
-                            <td>Started</td>
-                            <td style="width: 195.781px;"><a
-                                    href="{{ url_for('main.download', path=info.url) }}"><button
-                                        class="btn" type="submit"
-                                        style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
-                            </td>
-                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', games_name=info.games.name) }}"><button class="btn"
-                                        type="submit"
-                                        style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
-                            </td>
-                        
-                        </tr>
+                        <div class="col-sm-6 col-md-4 product-item animation-element slide-top-left">
+                            <div class="product-container"
+                                style="background: #222831;border-style: none;border-color: rgb(0,188,212);">
+                                <div class="row">
+                                    <div class="col-md-12"><a class="product-image"
+                                            href="{{ url_for('ctf.play', games_name=info.games.name) }}"
+                                            style="height: 225px;padding: 0;"><img
+                                                src="static/img/ctf_images/{{info.games.image}}"
+                                                style="width: 100%;height: 100%;" /></a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h2><a href="#" style="color: var(--bs-white);">{{info.games.name}}</a></h2>
+                                        <p style="color: var(--bs-white);">Category: {{info.games.category}}</p>
+                                        <p style="color: var(--bs-white);">Difficulty: {{info.games.difficulty}}</p>
+                                    </div>
+                                    <div class="col-4"><a class="small-text" href="#"
+                                            style="color: rgb(0,188,212);font-family: Lora, serif;"><img
+                                                style="width: 22px;height: 22px;margin-right: 4px;"
+                                                src="static/img/profile/{{info.user.image}}" />{{info.user.name}}</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6 d-grid" >
+                                        <form action="{{ url_for('ctf.play', games_name=info.games.name) }}">
+                                        <button
+                                            class="btn" type="submit"
+                                            style="background: #222831;margin: 0 auto;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
+                                        </form>
+                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {% endfor %}
-                    
-                    
-                    </tbody>
+                    </div>
 
-                    <tbody  class="filterDiv completed_games" style="color: var(--bs-white);border-style: solid;border-color: #222831;">
-                        
-                        
-                        
+                    <div class="filterDiv completed_games">
                         {% for info in completed_games %}
-                        <tr style="border-top-width: 3px;">
-                            
-                            <td><img class="rounded-circle me-2" width="30" height="30" src="static/img/profile/{{info.user.image}}">{{info.user.name}}</td>
-                            <td>{{info.games.name}}</td>
-                            <td>{{info.games.category}}</td>
-                            <td>{{info.games.difficulty}}</td>
-                            
-    
-                            <td>Completed</td>
-                            <td style="width: 195.781px;"><a
-                                    href="{{ url_for('main.download', path=info.url) }}"><button
-                                        class="btn" type="submit"
-                                        style="background: #222831;width: 110px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Download</button></a>
-                            </td>
-                            <td style="width: 176.969px;"><a href="{{ url_for('ctf.play', games_name=info.games.name) }}"><button class="btn"
-                                        type="submit"
-                                        style="background: #222831;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
-                            </td>
-                        
-                        </tr>
+                        <div class="col-sm-6 col-md-4 product-item animation-element slide-top-left">
+                            <div class="product-container"
+                                style="background: #222831;border-style: none;border-color: rgb(0,188,212);">
+                                <div class="row">
+                                    <div class="col-md-12"><a class="product-image"
+                                            href="{{ url_for('ctf.play', games_name=info.games.name) }}"
+                                            style="height: 225px;padding: 0;"><img
+                                                src="static/img/profile/{{info.user.image}}"
+                                                style="width: 100%;height: 100%;" /></a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h2><a href="#" style="color: var(--bs-white);">{{info.games.name}}</a></h2>
+                                        <p style="color: var(--bs-white);">Category: {{info.games.category}}</p>
+                                        <p style="color: var(--bs-white);">Difficulty: {{info.games.difficulty}}</p>
+                                    </div>
+                                    <div class="col-4"><a class="small-text" href="#"
+                                            style="color: rgb(0,188,212);font-family: Lora, serif;"><img
+                                                style="width: 22px;height: 22px;margin-right: 4px;"
+                                                src="static/img/profile/{{info.user.image}}" />{{info.user.name}}</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="col-6 d-grid" >
+                                        <form action="{{ url_for('ctf.play', games_name=info.games.name) }}">
+                                        <button
+                                            class="btn" type="submit"
+                                            style="background: #222831;margin: 0 auto;width: 96px;color: rgb(0,188,212);border-style: solid;border-color: #222831;border-radius: 10px;box-shadow: 0px 0px 5px 2px;">Play</button>
+                                        </form>
+                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         {% endfor %}
-                    
-                    
-                    </tbody>
-                    
+                    </div>
+
+
                 </div>
 
-                
-                  
-                </table>
+
+
 
             </div>
-        
             
+           
         </div>
+
+
+    </div>
     </div>
 </main>
 
