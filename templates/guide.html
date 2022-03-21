@@ -1,0 +1,65 @@
+{% extends "newbase.html" %}
+
+{% block title %}Guide{% endblock %}
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/Article-Clean.css')}}">
+
+    {% endblock %}
+
+{% block content %}
+<main class="page lanidng-page" style="background: #393E46;min-height: 100vh;">
+    <section class="article-clean" style="background: rgba(0,0,0,0);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2" style="margin-bottom: 40px;">
+                    <div class="intro">
+                        <h1 class="text-center" style="color: rgb(255,255,255);">Getting Started</h1>
+                    </div>
+                    <div class="text">
+                        <h2 style="color: var(--bs-white);text-decoration:  underline;">What is CTFBuddy?</h2>
+                        <p style="color: rgb(200,200,200);">CTFBuddy offers a new way to play and learn penetration testing. Each game you play will increase your skills in areas that are needed within the pen-testing industry. You will use popular tools to complete challenges in the following categories:</p>
+                        <ul>
+                            <li style="color: rgb(200,200,200);">Reverse Engineering</li>
+                            <li style="color: rgb(200,200,200);">Cryptography</li>
+                            <li style="color: rgb(200,200,200);">Web Security</li>
+                            <li style="color: rgb(200,200,200);">Linux</li>
+                            <li style="color: rgb(200,200,200);">Windows</li>
+                            <li style="color: rgb(200,200,200);">Forensics</li>
+                        </ul>
+                        <h2 style="color: var(--bs-white);text-decoration:  underline;">How do I setup my hacking lab?</h2>
+                        <p style="color: rgb(200,200,200);">To play security games on CTFBuddy, you will be required to have your own 'Attack Machine'. We recommend using the most popular operating system among hackers, Kali Linux.&nbsp;</p>
+                        <p style="color: var(--bs-white);">Step 1 - Installing VirtualBox</p>
+                        <p style="color: rgb(200,200,200);">You may run Kali Linux as your main operating system, but we highly suggest you run it as a virtual machine. To do this, You can download the latest version of VirtualBox from:<a href="https://www.virtualbox.org/" style="color: rgb(0,188,212);"><br>https://www.virtualbox.org/<br></a>&nbsp;&nbsp;</p>
+                        <p style="color: var(--bs-white);">Step 2 - Installing Kali Linux</p>
+                        <p style="color: rgb(200,200,200);">Once you have installed VirtualBox, you will need to download the Kali Linux operating system:<a href="https://kali.download/virtual-images/kali-2022.1/kali-linux-2022.1-virtualbox-amd64.ova" style="color: rgb(0,188,212);"><br>https://kali.download/virtual-images/kali-2022.1/kali-linux-2022.1-virtualbox-amd64.ova<br></a></p>
+                        <p style="color: var(--bs-white);">Step 3 - Configuring Kali Linux</p>
+                        <p style="color: rgb(200,200,200);">You can follow this Official Guide on running Kali Linux within the VirtualBox software:&nbsp; &nbsp;<a href="https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/" style="color: rgb(0,188,212);">https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/</a> &nbsp;</p>
+                        <p style="color: var(--bs-white);">Step 4 - Connecting to CTFBuddy Virtual Machines</p>
+                        <p style="color: rgb(200,200,200);">Victim Virtual Machines that are downloaded from CTFBuddy are FULL of security issues (yay), hence they should NEVER be connected to the internet. To keep the machines isolated, you will need to configure a new VirtualBox network adapter.</p>
+                        <p style="color: rgb(200,200,200);">In VirtualBox, navigate to File -&gt; select "Host Network Manager".</p>
+                        <figure class="figure d-block"><img class="figure-img" src="static/img/netmanager.png" style="height: 300px;border: 2px solid rgb(0,188,212);border-radius: 19px;"></figure>
+                        <p style="color: rgb(200,200,200);">Once in the Host Network Manager, you will need to change the IPv4 Address to 192.168.2.2 and click "Apply". If you know what you are doing, you may use a different valid IP Address.</p>
+                        <figure class="figure d-block"><img class="figure-img" src="static/img/vboxip.png" style="height: 300px;border: 2px solid rgb(0,188,212);border-radius: 19px;"></figure>
+                        <p style="color: rgb(200,200,200);">Next, you will need to configure the DHCP server to obtain IP addresses when CTFBuddy Victim Machines boot. Click on the "DHCP Server" tab and Copy the following configurations from the image bellow:</p>
+                        <figure class="figure d-block"><img class="figure-img" src="static/img/dhcp.png" style="height: 300px;border: 2px solid rgb(0,188,212);border-radius: 19px;"></figure>
+                        <p style="color: rgb(200,200,200);">Finally, change the adapter name for your attack box and for each new CTFBuddy Victim Machine you download. To do this, navigate to the virtual machines settings and select the "Host-only Adapter" you just created.</p>
+                        <figure class="figure d-block"><img class="figure-img" src="static/img/hostonly.png" style="height: 343px;border: 2px solid rgb(0,188,212);border-radius: 19px;"></figure>
+                        <p style="color: rgb(200,200,200);">And that's it, you're set! You shouldn't need to do this configuration again, but you will always need to make sure both your attacker and CTFBuddy Victim Machines are set to the "Host-only Adapter".</p>
+                        <h2 style="color: var(--bs-white);text-decoration:  underline;">How do I play?</h2>
+                        <p style="color: var(--bs-white);">Step 1 - Select Game</p>
+                        <p style="color: rgb(200,200,200);">You can head to <a href="{{ url_for('main.gameselect') }}" style="color: rgb(0,188,212);">game select</a>&nbsp;and choose the game you want to play. Once their, click the "Download" button to download the vulnerable virtual machine, followed by the "Play" button.</p>
+                        <figure class="figure d-block"><img class="figure-img" src="static/img/select.png" style="height: 343px;border: 2px solid rgb(0,188,212);border-radius: 19px;"></figure>
+                    </div>
+                    <p style="color: var(--bs-white);">Step 2 - Setting Up the Game</p>
+                    <p style="color: rgb(200,200,200);">Once you have downloaded the game file and have clicked "Play", you will need to make sure that both your attack box and victim box are configured correctly, don't forget to set both machines to the custom Host-Only Adapter you created. You can follow the same guide you used for setting up Kali Linux to setup the Victim Machine. If you don't know how to do this, look at the "How do I setup my hacking lab?" part of this tutorial.</p>
+                    <p style="color: var(--bs-white);">Step 3 - Playing the Game</p>
+                    <p style="color: rgb(200,200,200);">Read the game instruction to get an idea of how to start. If you think you have found a flag, insert it into the flag box and click "Submit".</p>
+                    <p style="color: var(--bs-white);">Step 4 - Earning and Using Points</p>
+                    <p style="color: rgb(200,200,200);">Points are a vital part of CTFBuddy and are used to calculate your place on the leader boards. If you get stuck, you can also use your points to purchase hints or a tutorial video. To earn more points, you will need to submit more flags, or you can even earn 1000 points for creating your own game!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
